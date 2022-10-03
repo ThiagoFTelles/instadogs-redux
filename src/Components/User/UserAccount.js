@@ -4,12 +4,12 @@ import UserHeader from './UserHeader';
 import UserPhotoPost from './UserPhotoPost';
 import UserStats from './UserStats';
 import Feed from '../Feed/Feed';
-import { UserContext } from '../../UserContext';
 import NotFound from '../NotFound';
 import Head from '../Helper/Head';
+import { useSelector } from 'react-redux';
 
 const UserAccount = () => {
-  const { data } = React.useContext(UserContext);
+  const { data } = useSelector((state) => state.user);
 
   return (
     <section className="container">
