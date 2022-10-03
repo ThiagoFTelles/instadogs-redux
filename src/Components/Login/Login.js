@@ -7,11 +7,13 @@ import LoginPasswordLost from './LoginPasswordLost';
 import LoginPasswordReset from './LoginPasswordReset';
 import NotFound from '../NotFound';
 import Head from '../Helper/Head';
+import Loading from '../Helper/Loading';
 import { useSelector } from 'react-redux';
 
 const Login = () => {
-  const { data } = useSelector((state) => state.user);
+  const { data, loading } = useSelector((state) => state.user);
 
+  if (loading) return <Loading />;
   if (data) return <Navigate to="/user" />;
   return (
     <section className={styles.login}>
