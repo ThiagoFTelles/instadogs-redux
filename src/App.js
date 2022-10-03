@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Footer from './Components/Footer';
@@ -9,8 +10,16 @@ import Photo from './Components/Photo/Photo';
 import UserAccount from './Components/User/UserAccount';
 import UserProfile from './Components/User/UserProfile';
 import NotFound from './Components/NotFound';
+import { useDispatch } from 'react-redux';
+import { autoLogin } from './store/user';
 
 function App() {
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(autoLogin());
+  }, [dispatch]);
+
   return (
     <div className="App">
       <BrowserRouter>
