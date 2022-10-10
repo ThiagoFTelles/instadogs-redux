@@ -6,7 +6,7 @@
     "package.json": true,
     "package-lock.json": true,
     "public": false,
-    "README.md": true,
+    "README.md": false,
     ".gitattributes": true
   }
 }
