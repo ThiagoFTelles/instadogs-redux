@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './UserStatsGraphs.module.css';
 import { VictoryPie, VictoryChart, VictoryBar } from 'victory';
+import { Navigate } from 'react-router-dom';
 
 const UserStatsGraphs = ({ data }) => {
   const [graph, setGraph] = React.useState([]);
@@ -15,12 +16,13 @@ const UserStatsGraphs = ({ data }) => {
     });
 
     setTotal(
-      //TODO: tratar erro que dá quando o usuário ainda não tem fotos.
-      data.map(({ acessos }) => Number(acessos)).reduce((a, b) => a + b),
+      data.length > 0 &&
+        data.map(({ acessos }) => Number(acessos)).reduce((a, b) => a + b),
     );
     setGraph(graphData);
   }, [data]);
 
+  if (data.length === 0) return <Navigate to="/user/post" />;
   return (
     <section className={`${styles.graph} animeLeft`}>
       <div className={`${styles.total} ${styles.graphItem}`}>
